@@ -1,5 +1,18 @@
 import React from 'react'
 import Keyboard from '../keyboard'
+import { withStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+
+const styles = theme => ({
+  root: {
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+    width: 400,
+   	margin: '20px auto',
+  },
+});
 
 class Calculate extends React.Component {
 	constructor(props) {
@@ -15,11 +28,16 @@ class Calculate extends React.Component {
 	}
 
 	render() {
+
+		const { classes } = this.props
+
 		return (
 			<div>
-				<h1>{this.props.title}</h1>
-				<div className="res">{this.state.result}</div>
-				<Keyboard onPress={this.handlepress} />
+				<Paper className={classes.root} elevation={1}>
+					<Typography variant="h4" component="h3">{this.props.title}</Typography>
+					<Typography variant="h5" component="h3" className="res">{this.state.result}</Typography>
+					<Keyboard onPress={this.handlepress} />
+				</Paper>
 			</div>		
 		)
 	}
@@ -41,6 +59,8 @@ class Calculate extends React.Component {
 			res = key;
 		} else if (key === '.') {
 			res += key;
+		} else if (key === '%') { 
+			res = res / 100
 		} else if (/\d/.test(key)) {
 			res += key;
 		} else {
@@ -51,4 +71,4 @@ class Calculate extends React.Component {
 	}
 }
 
-export default Calculate
+export default withStyles(styles)(Calculate)

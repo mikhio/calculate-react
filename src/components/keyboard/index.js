@@ -1,38 +1,58 @@
 import React from 'react'
+import Button from '@material-ui/core/Button'
+import { withStyles } from '@material-ui/core/styles'
 
-function Keyboard({ onPress = () => {} }) {
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+  buttonNull: {
+    margin: theme.spacing.unit,
+    width:144
+  },
+});
+
+function Keyboard({ 
+		onPress = () => {},
+		classes, 
+}) {
 	return (
 		<div>
 			<div>
-				<button className="clear" onClick={() => onPress('c')}>AC</button>
-				<button className="delet" onClick={() => onPress('Backspace')}>C</button>
-				<button className="del" onClick={() => onPress('/')}>/</button>
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress('c')}>AC</Button>
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress('Backspace')}>C</Button>
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress('%')}>%</Button>
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress('/')}>/</Button>
 			</div>
 			<div>
-				<button className="one" onClick={() => onPress(1)}>1</button>
-				<button className="two" onClick={() => onPress(2)}>2</button>
-				<button className="three" onClick={() => onPress(3)}>3</button>
-				<button className="um" onClick={() => onPress('*')}>*</button> 
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress(1)}>1</Button>
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress(2)}>2</Button>
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress(3)}>3</Button>
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress('*')}>*</Button> 
 			</div>
 			<div>
-				<button className="four" onClick={() => onPress(4)}>4</button>
-				<button className="five" onClick={() => onPress(5)}>5</button>
-				<button className="six" onClick={() => onPress(6)}>6</button>
-				<button className="minus" onClick={() => onPress('-')}>-</button>
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress(4)}>4</Button>
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress(5)}>5</Button>
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress(6)}>6</Button>
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress('-')}>-</Button>
 			</div>
 			<div>
-				<button className="seven" onClick={() => onPress(7)}>7</button>
-				<button className="eight" onClick={() => onPress(8)}>8</button>
-				<button className="nine" onClick={() => onPress(9)}>9</button>
-				<button className="plus" onClick={() => onPress('+')}>+</button>
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress(7)}>7</Button>
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress(8)}>8</Button>
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress(9)}>9</Button>
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress('+')}>+</Button>
 			</div>
 			<div>
-				<button className="null" onClick={() => onPress(0)}>0</button>
-				<button className="equally" onClick={() => onPress('Enter')}>=</button>
-				<button className="dot" onClick={() => onPress('.')}>.</button>
+				<Button variant="outlined" color="primary" className={classes.buttonNull} onClick={() => onPress(0)}>0</Button>
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress('.')}>.</Button>
+				<Button variant="outlined" color="primary" className={classes.button} onClick={() => onPress('Enter')}>=</Button>
+				
 			</div>
 		</div>
 	)
 }
 
-export default Keyboard
+export default withStyles(styles)(Keyboard)
